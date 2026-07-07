@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Bitácora</title>
+
+    <style>
+
+        body{
+            margin:0;
+            padding:40px;
+            font-family:Arial;
+            background:#020617;
+            color:white;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#c084fc;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:#111827;
+            border-radius:20px;
+            overflow:hidden;
+        }
+
+        th{
+            background:#1e293b;
+            color:#c084fc;
+            padding:15px;
+        }
+
+        td{
+            padding:15px;
+            border-bottom:1px solid #1e293b;
+            text-align:center;
+        }
+
+        tr:hover{
+            background:#1e293b;
+        }
+
+        .volver{
+            display:inline-block;
+            margin-bottom:25px;
+            padding:12px 20px;
+            background:#374151;
+            color:white;
+            text-decoration:none;
+            border-radius:12px;
+        }
+
+        .volver:hover{
+
+            box-shadow:
+                0 0 10px #a855f7,
+                0 0 20px #a855f7;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <a href="/dashboard"
+       class="volver">
+
+        ← Volver
+
+    </a>
+
+    <h1>
+        Bitácora del Sistema
+    </h1>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Usuario</th>
+
+                <th>Acción</th>
+
+                <th>Fecha</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr th:each="b : ${listaBitacora}">
+
+                <td th:text="${b.id}"></td>
+
+                <td th:text="${b.usuario}"></td>
+
+                <td th:text="${b.accion}"></td>
+
+                <td th:text="${b.fecha}"></td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</body>
+
+</html>

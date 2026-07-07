@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Asistencias</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#0f172a;
+            margin:0;
+            padding:40px;
+            color:white;
+        }
+
+        h1{
+            color:white;
+        }
+
+        form{
+            background:#1e293b;
+            padding:20px;
+            border-radius:20px;
+            margin-bottom:30px;
+        }
+
+        input, select{
+            width:100%;
+            padding:14px;
+            margin-top:10px;
+            border-radius:12px;
+            border:1px solid #334155;
+            background:#0f172a;
+            color:white;
+            box-sizing:border-box;
+        }
+
+        button{
+            width:100%;
+            padding:14px;
+            margin-top:15px;
+            border:none;
+            border-radius:12px;
+            background:#2563eb;
+            color:white;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:#1e293b;
+            margin-top:20px;
+            border-radius:20px;
+            overflow:hidden;
+        }
+
+        th, td{
+            padding:15px;
+            border:1px solid #334155;
+            text-align:left;
+            color:white;
+        }
+
+        th{
+            background:#2563eb;
+        }
+
+        .presente{
+            color:#22c55e;
+            font-weight:bold;
+        }
+
+        .ausente{
+            color:#ef4444;
+            font-weight:bold;
+        }
+
+        .salir{
+            position:absolute;
+            top:20px;
+            right:20px;
+            background:#374151;
+            color:white;
+            padding:12px 20px;
+            border-radius:12px;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .salir:hover{
+            background:#1f2937;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <a href="/dashboard"
+       class="salir">
+        Salir
+    </a>
+
+    <h1>Control de Asistencia</h1>
+
+    <form action="/guardar-asistencia"
+          method="post">
+
+        <input type="text"
+               name="alumno"
+               placeholder="Nombre del alumno"
+               required>
+
+        <select name="estado">
+
+            <option value="Presente">
+                Presente
+            </option>
+
+            <option value="Ausente">
+                Ausente
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Guardar Asistencia
+        </button>
+
+    </form>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Alumno</th>
+                <th>Estado</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr th:each="asistencia : ${listaAsistencias}">
+
+                <td th:text="${asistencia.id}"></td>
+
+                <td th:text="${asistencia.alumno}"></td>
+
+                <td>
+
+                    <span th:if="${asistencia.estado == 'Presente'}"
+                          class="presente"
+                          th:text="${asistencia.estado}">
+                    </span>
+
+                    <span th:if="${asistencia.estado == 'Ausente'}"
+                          class="ausente"
+                          th:text="${asistencia.estado}">
+                    </span>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</body>
+</html>

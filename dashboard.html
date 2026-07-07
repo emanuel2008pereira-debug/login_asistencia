@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Pro</title>
+
+    <!-- CSS EXTERNO -->
+    <link rel="stylesheet"
+          th:href="@{/css/dashboard.css}">
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <div>
+
+            <div class="logo">
+                Login MVC
+            </div>
+
+            <div class="menu">
+
+                <a href="/asistencias">
+                    Asistencias
+                </a>
+
+                <a href="/alumnos">
+                    Alumnos
+                </a>
+
+                <a th:if="${rol == 'ADMIN'}"
+                   href="/bitacora">
+                    Bitácora
+                </a>
+
+                <a th:if="${rol == 'ADMIN'}"
+                   href="/usuarios">
+                    Gestión Usuarios
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="logout">
+
+        <a th:href="@{/loginmvc}">
+            Salir
+        </a>
+
+    </div>
+
+    <div class="main">
+
+        <h1 class="titulo">
+            Dashboard
+        </h1>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h2 th:text="${totalAlumnos}">
+                    0
+                </h2>
+
+                <p>
+                    Total de alumnos
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 th:text="${totalAsistencias}">
+                    0
+                </h2>
+
+                <p>
+                    Total asistencias
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JS EXTERNO -->
+    <script src="/js/dashboard.js"></script>
+
+</body>
+</html>

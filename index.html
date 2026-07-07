@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:
+            linear-gradient(
+            135deg,
+            #0f172a,
+            #1e1b4b,
+            #312e81
+            );
+
+            overflow:hidden;
+        }
+
+        .box{
+            width:450px;
+            padding:50px;
+            border-radius:30px;
+
+            background:rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(20px);
+
+            border:1px solid rgba(255,255,255,0.1);
+
+            box-shadow:
+            0 0 40px rgba(0,0,0,0.5);
+
+            text-align:center;
+
+            animation:fade 1s ease;
+        }
+
+        @keyframes fade{
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        h1{
+            color:white;
+            font-size:50px;
+            margin-bottom:20px;
+        }
+
+        p{
+            color:#cbd5e1;
+            margin-bottom:35px;
+            font-size:18px;
+        }
+
+        a{
+            display:inline-block;
+
+            padding:15px 35px;
+
+            border-radius:15px;
+
+            text-decoration:none;
+
+            color:white;
+
+            font-size:18px;
+
+            background:
+            linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+            );
+
+            transition:0.3s;
+
+            box-shadow:
+            0 0 20px rgba(124,58,237,0.5);
+        }
+
+        a:hover{
+
+            transform:scale(1.05);
+
+            box-shadow:
+            0 0 30px rgba(124,58,237,0.9);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h1>
+            Bienvenido
+        </h1>
+
+        <p>
+            Sistema de asistencia de alumnos
+        </p>
+
+        <a href="/login">
+            Entrar al sistema
+        </a>
+
+    </div>
+
+</body>
+</html>

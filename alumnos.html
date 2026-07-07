@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Alumnos</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#0f172a;
+            margin:0;
+            padding:40px;
+            color:white;
+        }
+
+        h1{
+            color:white;
+        }
+
+        /* FORM */
+
+        form{
+            background:#1e293b;
+            padding:20px;
+            border-radius:20px;
+            margin-bottom:30px;
+        }
+
+        input{
+            width:100%;
+            padding:14px;
+            margin-top:10px;
+            border-radius:12px;
+            border:1px solid #334155;
+            background:#0f172a;
+            color:white;
+            box-sizing:border-box;
+        }
+
+        input::placeholder{
+            color:#94a3b8;
+        }
+
+        button{
+            width:100%;
+            padding:14px;
+            margin-top:15px;
+            border:none;
+            border-radius:12px;
+            background:#2563eb;
+            color:white;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        /* TABLA */
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:#1e293b;
+            margin-top:20px;
+            border-radius:20px;
+            overflow:hidden;
+        }
+
+        th, td{
+            padding:15px;
+            border:1px solid #334155;
+            text-align:left;
+            color:white;
+        }
+
+        th{
+            background:#2563eb;
+        }
+
+        /* BOTON SALIR */
+
+        .salir{
+            position:absolute;
+            top:20px;
+            right:20px;
+            background:#374151;
+            color:white;
+            padding:12px 20px;
+            border-radius:12px;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .salir:hover{
+            background:#1f2937;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <a href="/dashboard"
+       class="salir">
+        Salir
+    </a>
+
+    <h1>
+        Lista de alumnos
+    </h1>
+
+    <!-- SOLO ADMIN VE EL FORMULARIO -->
+
+    <form th:if="${rol == 'ADMIN'}"
+          action="/guardar-alumno"
+          method="post">
+
+        <input type="text"
+               name="nombre"
+               placeholder="Nombre"
+               required>
+
+        <input type="text"
+               name="apellido"
+               placeholder="Apellido"
+               required>
+
+        <input type="email"
+               name="correo"
+               placeholder="Correo"
+               required>
+
+        <input type="text"
+               name="telefono"
+               placeholder="Telefono"
+               required>
+
+        <input type="text"
+               name="usuario"
+               placeholder="Usuario"
+               required>
+
+        <input type="text"
+               name="carnet"
+               placeholder="Carnet"
+               required>
+
+        <input type="text"
+               name="grado"
+               placeholder="Grado"
+               required>
+
+        <input type="text"
+               name="seccion"
+               placeholder="Sección"
+               required>
+
+        <button type="submit">
+            Guardar Alumno
+        </button>
+
+    </form>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Usuario</th>
+                <th>Carnet</th>
+                <th>Grado</th>
+                <th>Sección</th>
+
+                <th th:if="${rol == 'ADMIN'}">
+                    Acciones
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr th:each="alumno : ${listaAlumnos}">
+
+                <td th:text="${alumno.id}"></td>
+                <td th:text="${alumno.nombre}"></td>
+                <td th:text="${alumno.apellido}"></td>
+                <td th:text="${alumno.correo}"></td>
+                <td th:text="${alumno.telefono}"></td>
+                <td th:text="${alumno.usuario}"></td>
+                <td th:text="${alumno.carnet}"></td>
+                <td th:text="${alumno.grado}"></td>
+                <td th:text="${alumno.seccion}"></td>
+
+                <td th:if="${rol == 'ADMIN'}">
+
+                    <a style="color:#38bdf8;
+                              text-decoration:none;
+                              font-weight:bold;"
+                       th:href="@{/editar-alumno/{id}(id=${alumno.id})}">
+                        Editar
+                    </a>
+
+                    <br><br>
+
+                    <a style="color:#ef4444;
+                              text-decoration:none;
+                              font-weight:bold;"
+                       th:href="@{/eliminar-alumno/{id}(id=${alumno.id})}">
+                        Eliminar
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</body>
+</html>
